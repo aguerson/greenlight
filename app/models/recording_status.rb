@@ -1,2 +1,0 @@
-class RecordingStatus < ApplicationRecord
-end
