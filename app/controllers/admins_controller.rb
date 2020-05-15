@@ -64,6 +64,23 @@ class AdminsController < ApplicationController
     @pagy, @recordings = pagy_array(recs)
   end
 
+  def all_recordings
+    bigbluebutton_recordings_path = "/var/www/bigbluebutton-default/record/"
+
+    recording_paths = Dir["#{bigbluebutton_recordings_path}*"]
+
+    if recording_paths.present?
+      @recordings = recording_paths.map do |file_path|
+        {
+          name: file_path.gsub(bigbluebutton_recordings_path, ''),
+          url: RecordingChecker::RECORDINGS_ENDPOINT + file_path.gsub(bigbluebutton_recordings_path, '')
+        }
+      end
+
+    end
+
+  end
+
   # GET /admins/rooms
   def server_rooms
     @search = params[:search] || ""

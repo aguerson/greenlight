@@ -1,0 +1,74 @@
+<div class="container pt-6">
+  <%= render "shared/components/subtitle", subtitle: t("administrator.title"), search: false %>
+
+  <div class="row">
+    <div class="col-lg-3 mb-4">
+      <%= render "admins/components/menu_buttons" %>
+    </div>
+    <div id="server_recordings" class="col-lg-9">
+
+
+      <div id="server_recordings" class="col-lg-9">
+         <div id="rooms" class="setting-view card">
+            <div class="card-body p-6">
+               <div class="card-title text-primary">
+                  <div class="form-group">
+                     <div class="row mt-2">
+                        <div class="col-6">
+                             <p class="subtitle">All MP4 Recordings</p>
+                        </div>
+
+                     </div>
+                     <hr class="mt-0">
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-12">
+                     <div class="table-responsive">
+                        <table id="rooms-table" class="table table-hover table-outline table-vcenter text-nowrap card-table">
+                           <thead>
+                              <tr>
+                                 <th data-header="name" data-order="none">
+                                    Name
+                                 </th>
+                                 <th data-header="users.name" data-order="none">
+                                    Link
+                                 </th>
+
+                              </tr>
+                           </thead>
+                           <tbody id="rooms-table">
+                              <% if @recordings.present? %>
+                                <% @recordings.each do |recording| %>
+                                  <tr class="room-block" data-path="/dmy-xvk-4yw/update_settings" data-room-settings="{&quot;muteOnStart&quot;:false,&quot;requireModeratorApproval&quot;:false,&quot;anyoneCanStart&quot;:true,&quot;joinModerator&quot;:true}" data-room-access-code="">
+                                     <td>
+                                        <div id="room-title" class="form-inline edit_hover_class">
+                                           <text class="room-name-text">
+                                              <%= recording[:name] %>
+                                           </text>
+                                        </div>
+
+                                     </td>
+                                     <td class="text-left">
+                                        <%= link_to 'MP4 Download', recording[:url], download: '', class: "btn btn-sm btn-primary", target: "_blank" %>
+                                     </td>
+
+
+                                  </tr>
+                                <% end %>
+                              <% end %>
+
+                           </tbody>
+                        </table>
+
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
