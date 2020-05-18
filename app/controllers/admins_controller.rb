@@ -64,7 +64,7 @@ class AdminsController < ApplicationController
     @pagy, @recordings = pagy_array(recs)
   end
 
-  def all_recordings
+  def all_mp4_recordings
     bigbluebutton_recordings_path = "/var/www/bigbluebutton-default/record/"
 
     recording_paths = Dir["#{bigbluebutton_recordings_path}*"]

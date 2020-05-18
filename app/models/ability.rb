@@ -32,7 +32,7 @@ class Ability
       end
 
       if highest_role.name == 'admin'
-        can [:all_recordings], :admin
+        can [:all_mp4_recordings], :admin
       end
 
       if highest_role.get_permission("can_edit_roles")

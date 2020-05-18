@@ -2,10 +2,8 @@ module RecordingChecker
   extend BbbServer
   extend Recorder
 
-  RECORDINGS_ENDPOINT = "#{ENV['BIGBLUEBUTTON_ENDPOINT']}record/"
-
   def recording_link(record_id, format: :mp4)
-    "#{RECORDINGS_ENDPOINT.remove('/bigbluebutton')}#{record_id}.#{format}"
+    "#{ENV['MP4_ENDPOINT']}#{record_id}.#{format}"
   end
 
   module_function :recording_link
@@ -21,7 +19,7 @@ module RecordingChecker
   module_function :call
 
   def available?(record_id, format: :mp4)
-    uri = URI(ENV['BIGBLUEBUTTON_ENDPOINT'])
+    uri = URI(ENV['MP4_ENDPOINT'])
     path = "/record/#{record_id}.#{format}"
 
     http = Net::HTTP.new(uri.host, uri.port)
