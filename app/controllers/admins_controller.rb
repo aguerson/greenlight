@@ -73,7 +73,7 @@ class AdminsController < ApplicationController
       @recordings = recording_paths.map do |file_path|
         {
           name: file_path.gsub(bigbluebutton_recordings_path, ''),
-          url: RecordingChecker::RECORDINGS_ENDPOINT + file_path.gsub(bigbluebutton_recordings_path, '')
+          url: ENV['MP4_ENDPOINT'] + file_path.gsub(bigbluebutton_recordings_path, '')
         }
       end
 
