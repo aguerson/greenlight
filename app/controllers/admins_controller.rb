@@ -67,13 +67,15 @@ class AdminsController < ApplicationController
   def all_mp4_recordings
     bigbluebutton_recordings_path = "/var/www/bigbluebutton-default/record/"
 
-    recording_paths = Dir["#{bigbluebutton_recordings_path}*"]
+    recording_paths = Dir["#{bigbluebutton_recordings_path}*.{mp4}"]
 
     if recording_paths.present?
       @recordings = recording_paths.map do |file_path|
         {
           name: file_path.gsub(bigbluebutton_recordings_path, ''),
-          url: ENV['MP4_ENDPOINT'] + file_path.gsub(bigbluebutton_recordings_path, '')
+          url: ENV['MP4_ENDPOINT'] + file_path.gsub(bigbluebutton_recordings_path, ''),
+          size: File.size(file_path),
+          created_at: File.ctime(file_path).to_s
         }
       end
 

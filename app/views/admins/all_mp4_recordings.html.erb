@@ -5,7 +5,6 @@
     <div class="col-lg-3 mb-4">
       <%= render "admins/components/menu_buttons" %>
     </div>
-    <div id="server_recordings" class="col-lg-9">
 
 
       <div id="server_recordings" class="col-lg-9">
@@ -35,6 +34,14 @@
                                     Link
                                  </th>
 
+                                 <th data-header="users.name" data-order="none">
+                                    Size
+                                 </th>
+
+                                 <th data-header="users.name" data-order="none">
+                                    Created At
+                                 </th>
+
                               </tr>
                            </thead>
                            <tbody id="rooms-table">
@@ -54,6 +61,15 @@
                                      </td>
 
 
+                                     <td class="text-left">
+                                       <%= number_to_human_size(recording[:size]) %>
+                                     </td>
+
+                                     <td class="text-left">
+                                       <%= recording[:created_at] %>
+                                     </td>
+
+
                                   </tr>
                                 <% end %>
                               <% end %>
@@ -66,8 +82,6 @@
                </div>
             </div>
          </div>
-      </div>
-
 
     </div>
   </div>
